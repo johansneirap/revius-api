@@ -52,6 +52,11 @@ To install and run the Revius API locally, follow these steps:
     ```sh
     fastapi dev app/main.py
     ```
+5. Run in Dev Container (Recommended)
+    - Open the project in VSCODE
+    - Check notifications and press `Reopen in a container`
+    - This will open the project in an isolated container executing VS Code from inside, allowing use te same environment for everyone participating in the project
+    - You are ready to go! 🎉
 
 ## Usage
 
