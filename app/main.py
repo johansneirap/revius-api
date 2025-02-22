@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from app.version import VERSION
 from app.constants.api_properties import GLOBAL_PREFIX
 from app.routers import comments, favorites, products, reviews, stores, users
 
@@ -17,4 +17,9 @@ app.include_router(favorites.router)
 @app.get("/")
 async def root():
     """read root function"""
-    return {"message": "Hello from Revius API"}
+    return {"message": f"Hello from Revius API {VERSION}"}
+
+@app.get("/version")
+async def get_version():
+    """Endpoint to get the version of the application"""
+    return {"version": VERSION}
