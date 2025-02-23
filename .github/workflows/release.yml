@@ -35,7 +35,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: semantic-release
-
-      - name: Bump version
-        if: success()
-        run: python /scripts/bump-version.py ${{ steps.semantic-release.outputs.new_release_version }}
