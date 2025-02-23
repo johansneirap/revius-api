@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/johansneirap/revius-api/compare/v0.1.0...v0.2.0) (2025-02-23)
+
+
+### Features
+
+* **products:** add endpoint to retrieve a single product by ID ([3bd1ea9](https://github.com/johansneirap/revius-api/commit/3bd1ea99425bf03cf7148e3dfbe07f2b0dd5dfed))
+
 # [0.1.0](https://github.com/johansneirap/revius-api/compare/v0.0.1...v0.1.0) (2025-02-23)
 
 
