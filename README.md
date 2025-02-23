@@ -78,13 +78,13 @@ For a full list of endpoints and their details, refer to the interactive API doc
 ## Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to the branch (`git push origin feature/your-feature`).
-6. Open a pull request.
+1. Create a new feature/fix branch
+2. Make sure your branch is always being rebased by main
+3. Make your changes
+4. Commit your changes
+5. Push changes to your branch
+6. Open a Pull Request
+7. Once the changes are revised, merge it using only rebase strategy
 
 ## License
 
