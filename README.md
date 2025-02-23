@@ -23,6 +23,11 @@ Revius API is a service designed to provide data and functionalities for Revius.
 - Supports asynchronous programming
 - Automatic interactive API documentation
 
+## Software needed
+- VS Code
+- Docker
+- Pyenv (not mandatory, highly recommended tough)
+
 ## Installation
 
 To install and run the Revius API locally, follow these steps:
