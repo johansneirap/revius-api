@@ -1,0 +1,27 @@
+{
+    "name": "FastAPI Project",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.formatting.provider": "black",
+                "python.analysis.extraPaths": [
+                    "/workspace"
+                ]
+            }
+        }
+    },
+    "forwardPorts": [8000, 5432],
+    "postCreateCommand": "pip install --user -r requirements.txt && chmod +x .devcontainer/start-dev.sh",
+    "postStartCommand": ".devcontainer/start-dev.sh",
+    "postAttachCommand": ".devcontainer/start-dev.sh"
+}
