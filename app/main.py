@@ -23,3 +23,8 @@ async def root():
 async def get_version():
     """Endpoint to get the version of the application"""
     return {"version": VERSION}
+
+@app.get("/healthcheck")
+async def get_healthcheck():
+    """Endpoint to get the healthcheck of the application"""
+    return {"status": "ok"}
