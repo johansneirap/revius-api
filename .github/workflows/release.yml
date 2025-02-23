@@ -38,4 +38,4 @@ jobs:
 
       - name: Bump version
         if: success()
-        run: python /workspace/scripts/bump-version.py ${{ steps.semantic-release.outputs.new_release_version }}
+        run: python /scripts/bump-version.py ${{ steps.semantic-release.outputs.new_release_version }}
