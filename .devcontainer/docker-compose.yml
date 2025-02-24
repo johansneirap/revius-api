@@ -8,8 +8,8 @@ services:
       - ..:/workspace:cached
     command: sleep infinity
     network_mode: service:db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/fastapi_db
+    env_file:
+      - ../.env
       
   db:
     image: postgres:15
@@ -19,7 +19,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: fastapi_db
+      POSTGRES_DB: revius_db
 
 volumes:
   postgres-data:
