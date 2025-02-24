@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/johansneirap/revius-api/compare/v0.2.0...v0.3.0) (2025-02-24)
+
+
+### Features
+
+* **models:** adds models & schemas ([998d91b](https://github.com/johansneirap/revius-api/commit/998d91bd19aa464f5b24cf9b81663683eb673400))
+
 # [0.2.0](https://github.com/johansneirap/revius-api/compare/v0.1.0...v0.2.0) (2025-02-23)
 
 
