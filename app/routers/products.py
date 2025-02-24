@@ -1,12 +1,15 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Query
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from ..core.security import get_current_user
 from ..core.dependencies import get_current_admin_user
 from ..database import get_db
 from ..schemas.product import ProductCreate, Product, PriceHistory
-from ..models.product import Product as ProductModel, PriceHistory as PriceHistoryModel, Store
 from ..models.user import User as UserModel
+from ..models.product import (
+    Product as ProductModel,
+    PriceHistory as PriceHistoryModel,
+    Store
+)
 
 router = APIRouter(prefix="/products", tags=["products"])
 
@@ -19,16 +22,17 @@ async def create_product(
 ):
     """Crear nuevo producto (solo admin)"""
     db_product = ProductModel(**product.dict(exclude={'store_ids'}))
-    
+
     # Agregar tiendas al producto
     if product.store_ids:
         stores = db.query(Store).filter(Store.id.in_(product.store_ids)).all()
         db_product.stores = stores
-    
+
     db.add(db_product)
     db.commit()
     db.refresh(db_product)
     return db_product
+
 
 @router.get("/", response_model=List[Product])
 async def read_products(
@@ -41,16 +45,17 @@ async def read_products(
 ):
     """Listar productos con filtros opcionales"""
     query = db.query(ProductModel)
-    
+
     if search:
         query = query.filter(ProductModel.name.ilike(f"%{search}%"))
     if min_rating:
         query = query.filter(ProductModel.average_rating >= min_rating)
     if store_id:
         query = query.filter(ProductModel.stores.any(id=store_id))
-    
+
     products = query.offset(skip).limit(limit).all()
     return products
+
 
 @router.get("/{product_id}", response_model=Product)
 async def read_product(
@@ -58,10 +63,12 @@ async def read_product(
     db: Session = Depends(get_db)
 ):
     """Obtener un producto específico"""
-    product = db.query(ProductModel).filter(ProductModel.id == product_id).first()
+    product = db.query(ProductModel).filter(
+        ProductModel.id == product_id).first()
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     return product
+
 
 @router.get("/{product_id}/price-history", response_model=List[PriceHistory])
 async def read_product_price_history(

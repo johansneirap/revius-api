@@ -17,12 +17,15 @@ app.include_router(favorites.router)
 @app.get("/")
 async def root():
     """read root function"""
-    return {"message": f"Hello from {settings.PROJECT_NAME} {settings.VERSION}"}
+    msg = f"Hello from {settings.PROJECT_NAME} {settings.VERSION}"
+    return {"message": msg}
+
 
 @app.get("/version")
 async def get_version():
     """Endpoint to get the version of the application"""
     return {"version": settings.VERSION}
+
 
 @app.get("/healthcheck")
 async def get_healthcheck():

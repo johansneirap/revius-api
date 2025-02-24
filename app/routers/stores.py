@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
-from ..core.security import get_current_user
 from ..core.dependencies import get_current_admin_user
 from ..database import get_db
 from ..schemas.product import StoreCreate, Store
@@ -12,6 +11,7 @@ router = APIRouter(
     prefix="/stores",
     tags=["stores"]
 )
+
 
 @router.post("/", response_model=Store)
 async def create_store(
@@ -25,6 +25,7 @@ async def create_store(
     db.commit()
     db.refresh(db_store)
     return db_store
+
 
 @router.get("/", response_model=List[Store])
 async def read_stores(

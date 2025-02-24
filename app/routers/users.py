@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
 from ..core.security import get_current_user
 from ..core.dependencies import get_current_admin_user
 from ..database import get_db
-from ..schemas.user import UserCreate, User, UserUpdate
+from ..schemas.user import User, UserUpdate
 from ..models.user import User as UserModel
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -16,6 +16,7 @@ async def read_user_me(
 ):
     """Obtener información del usuario actual"""
     return current_user
+
 
 @router.put("/me", response_model=User)
 async def update_user_me(
@@ -29,6 +30,7 @@ async def update_user_me(
     db.commit()
     db.refresh(current_user)
     return current_user
+
 
 @router.get("/", response_model=List[User])
 async def read_users(
