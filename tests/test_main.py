@@ -23,4 +23,8 @@ def test_get_version():
 def test_get_healthcheck():
     response = client.get(f"{BASE_PATH}/healthcheck")
     assert response.status_code == 200
-    assert response.json() == {"status": "ok"}
+    assert response.json() == {
+        "status": "ok",
+        "database": "connected",
+        "api": "running"
+    }

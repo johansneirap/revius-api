@@ -2,8 +2,8 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import jwt
 from jose.exceptions import JWTError
-from app.schemas.user import UserFromAuth0
 from app.core.config import get_settings
+from app.schemas.user import UserFromAuth0
 import requests
 
 app = FastAPI()
