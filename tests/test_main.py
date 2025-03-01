@@ -4,22 +4,23 @@ from app.core.config import get_settings
 client = TestClient(app)
 
 settings = get_settings()
+BASE_PATH = settings.GLOBAL_API_PREFIX
 
 
 def test_read_root():
-    response = client.get("/api/v1/")
+    response = client.get(BASE_PATH)
     msg = f"Hello from {settings.PROJECT_NAME} {settings.VERSION}"
     assert response.status_code == 200
     assert response.json() == {"message": msg}
 
 
 def test_get_version():
-    response = client.get("/api/v1/version")
+    response = client.get(f"{BASE_PATH}/version")
     assert response.status_code == 200
     assert "version" in response.json()
 
 
 def test_get_healthcheck():
-    response = client.get("/api/v1/healthcheck")
+    response = client.get(f"{BASE_PATH}/healthcheck")
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}

@@ -1,6 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from app.routers import comments, favorites, products, reviews, stores, users
 from app.core.config import get_settings
+from sqlalchemy.orm import Session
+from sqlalchemy import text
+from app.database import get_db
 
 app = FastAPI()
 settings = get_settings()
@@ -28,6 +31,11 @@ async def get_version():
 
 
 @app.get("/healthcheck")
-async def get_healthcheck():
+async def get_healthcheck(db: Session = Depends(get_db)):
     """Endpoint to get the healthcheck of the application"""
-    return {"status": "ok"}
+    try:
+        # Intentar ejecutar una query simple para verificar la base de datos
+        db.execute(text("SELECT 1"))
+        return {"status": "ok", "database": "connected", "api": "running"}
+    except Exception as e:
+        return {"status": "error", "database": "disconnected", "error": str(e)}

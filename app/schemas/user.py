@@ -23,3 +23,9 @@ class User(UserBase):
 
     class Config:
         from_attributes = True
+
+
+class UserFromAuth0(UserBase):
+    user_id: str
+    name: str = None
+    permissions: list = []

@@ -4,15 +4,15 @@ from typing import List
 from ..core.security import get_current_user
 from ..core.dependencies import get_current_admin_user
 from ..database import get_db
-from ..schemas.user import User, UserUpdate
+from ..schemas.user import User, UserUpdate, UserFromAuth0
 from ..models.user import User as UserModel
 
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.get("/me", response_model=User)
+@router.get("/me", response_model=UserFromAuth0)
 async def read_user_me(
-    current_user: UserModel = Depends(get_current_user)
+    current_user: UserFromAuth0 = Depends(get_current_user)
 ):
     """Obtener información del usuario actual"""
     return current_user

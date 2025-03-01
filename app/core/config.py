@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     DB_PORT: str = os.getenv("DB_PORT", "5432")
 
     # Auth0
-    AUTH0_DOMAIN: str = "your-domain.auth0.com"
-    AUTH0_AUDIENCE: str = "your-api-identifier"
+    AUTH0_DOMAIN: str = os.getenv("AUTH0_DOMAIN", "my-domain.auth0.com")
+    AUTH0_AUDIENCE: str = os.getenv("AUTH0_AUDIENCE", "your-api-identifier")
     AUTH0_ALGORITHMS: list = ["RS256"]
 
     # AWS S3 (para almacenamiento de imágenes)
