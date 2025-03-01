@@ -1,11 +1,11 @@
-from pydantic_settings import BaseSettings
+import os
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from functools import lru_cache
 from app.version import VERSION
-import os
 
 
-class Settings(BaseSettings):
+class Settings(BaseModel):
     PROJECT_NAME: str = "Review API"
     VERSION: str = VERSION
     GLOBAL_API_PREFIX: str = "/api/v1"
@@ -27,13 +27,10 @@ class Settings(BaseSettings):
     AWS_SECRET_ACCESS_KEY: Optional[str] = None
     AWS_BUCKET_NAME: Optional[str] = None
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
-
-# Crear una instancia cacheada de configuración
+    model_config = ConfigDict(env_file=".env", case_sensitive=True)
 
 
 @lru_cache()
 def get_settings() -> Settings:
+    """Retorna una instancia cacheada de la aplicación"""
     return Settings()

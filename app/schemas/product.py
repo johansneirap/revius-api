@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 from typing import List
 from decimal import Decimal
@@ -11,9 +11,7 @@ class StoreBase(BaseModel):
 
 class Store(StoreBase):
     id: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class StoreCreate(StoreBase):
@@ -36,9 +34,7 @@ class Product(ProductBase):
     review_count: int
     created_at: datetime
     stores: List[Store]
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PriceHistoryBase(BaseModel):
@@ -49,6 +45,4 @@ class PriceHistoryBase(BaseModel):
 class PriceHistory(PriceHistoryBase):
     id: int
     product_id: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
